@@ -64,24 +64,31 @@ export interface GhibliVehicle {
 }
 
 export interface GhibliHeaderInterface {
-  ghibliFilms: GhibliFilm[];
-  ghibliPeople: GhibliPerson[];
-  ghibliLocations: GhibliLocation[];
-  ghibliSpecies: GhibliSpecies[];
-  ghibliVehicles: GhibliVehicle[];
-  setGhibliPeople: Dispatch<SetStateAction<GhibliPerson[]>>;
-  setGhibliLocations: Dispatch<SetStateAction<GhibliLocation[]>>;
-  setGhibliSpecies: Dispatch<SetStateAction<GhibliSpecies[]>>;
-  setGhibliVehicles: Dispatch<SetStateAction<GhibliVehicle[]>>;
   currentList: string;
   setCurrentList: Dispatch<SetStateAction<string>>;
 }
 
-export interface GhibliListInterface {
+export interface GhibliFilmsInterface {
   ghibliFilms: GhibliFilm[];
+  setGhibliFilms: Dispatch<SetStateAction<GhibliFilm[]>>;
+}
+
+export interface GhibliPeopleInterface {
   ghibliPeople: GhibliPerson[];
+  setGhibliPeople: Dispatch<SetStateAction<GhibliPerson[]>>;
+}
+
+export interface GhibliLocationsInterface {
   ghibliLocations: GhibliLocation[];
+  setGhibliLocations: Dispatch<SetStateAction<GhibliLocation[]>>;
+}
+
+export interface GhibliSpeciesInterface {
   ghibliSpecies: GhibliSpecies[];
+  setGhibliSpecies: Dispatch<SetStateAction<GhibliSpecies[]>>;
+}
+
+export interface GhibliVehiclesInterface {
   ghibliVehicles: GhibliVehicle[];
-  currentList: string;
+  setGhibliVehicles: Dispatch<SetStateAction<GhibliVehicle[]>>;
 }
