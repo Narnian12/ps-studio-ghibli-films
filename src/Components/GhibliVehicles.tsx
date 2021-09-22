@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import {
   GhibliVehicle,
   GhibliVehiclesInterface,
@@ -10,15 +10,19 @@ import Typography from '@mui/material/Typography';
 export const GhibliVehicles: FC<GhibliVehiclesInterface> = ({
   ghibliVehicles,
   setGhibliVehicles,
+  setNumPages,
 }) => {
   useEffect(() => {
     fetch('https://ghibliapi.herokuapp.com/vehicles')
       .then((response) => response.json())
-      .then((vehicles: [GhibliVehicle]) => setGhibliVehicles(vehicles));
-  }, [setGhibliVehicles]);
+      .then((vehicles: [GhibliVehicle]) => {
+        setGhibliVehicles(vehicles);
+        setNumPages(1);
+      });
+  }, [setGhibliVehicles, setNumPages]);
 
   return (
-    <AnimeListWrapper>
+    <ListWrapper>
       <Grid columns={5} container spacing={1}>
         <Grid item xs={1}>
           <GridItemStyle>
@@ -41,35 +45,35 @@ export const GhibliVehicles: FC<GhibliVehiclesInterface> = ({
           </GridItemStyle>
         </Grid>
         {ghibliVehicles?.map((elem: GhibliVehicle) => (
-          <>
-            <Grid item xs={1} key={elem.id}>
+          <React.Fragment key={elem.id}>
+            <Grid item xs={1}>
               <GridItemStyle>
                 <Typography>{elem.name}</Typography>
               </GridItemStyle>
             </Grid>
-            <Grid item xs={2} key={elem.id}>
+            <Grid item xs={2}>
               <GridItemStyle>
                 <Typography>{elem.description}</Typography>
               </GridItemStyle>
             </Grid>
-            <Grid item xs={1} key={elem.id}>
+            <Grid item xs={1}>
               <GridItemStyle>
                 <Typography>{elem.vehicle_class}</Typography>
               </GridItemStyle>
             </Grid>
-            <Grid item xs={1} key={elem.id}>
+            <Grid item xs={1}>
               <GridItemStyle>
                 <Typography>{elem.length}</Typography>
               </GridItemStyle>
             </Grid>
-          </>
+          </React.Fragment>
         ))}
       </Grid>
-    </AnimeListWrapper>
+    </ListWrapper>
   );
 };
 
-const AnimeListWrapper = styled.div`
+const ListWrapper = styled.div`
   margin: 80px 0px 0px 0px;
 `;
 

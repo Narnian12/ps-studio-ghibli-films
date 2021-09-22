@@ -63,32 +63,41 @@ export interface GhibliVehicle {
   url: string;
 }
 
-export interface GhibliHeaderInterface {
-  currentList: string;
-  setCurrentList: Dispatch<SetStateAction<string>>;
+export interface HomeInterface {
+  setNumPages: Dispatch<SetStateAction<number>>;
 }
 
 export interface GhibliFilmsInterface {
   ghibliFilms: GhibliFilm[];
   setGhibliFilms: Dispatch<SetStateAction<GhibliFilm[]>>;
+  setNumPages: Dispatch<SetStateAction<number>>;
+  currPage: number;
 }
 
 export interface GhibliPeopleInterface {
   ghibliPeople: GhibliPerson[];
   setGhibliPeople: Dispatch<SetStateAction<GhibliPerson[]>>;
+  setNumPages: Dispatch<SetStateAction<number>>;
+  currPage: number;
 }
 
 export interface GhibliLocationsInterface {
   ghibliLocations: GhibliLocation[];
   setGhibliLocations: Dispatch<SetStateAction<GhibliLocation[]>>;
+  setNumPages: Dispatch<SetStateAction<number>>;
+  currPage: number;
 }
 
 export interface GhibliSpeciesInterface {
   ghibliSpecies: GhibliSpecies[];
   setGhibliSpecies: Dispatch<SetStateAction<GhibliSpecies[]>>;
+  setNumPages: Dispatch<SetStateAction<number>>;
+  currPage: number;
 }
 
 export interface GhibliVehiclesInterface {
   ghibliVehicles: GhibliVehicle[];
   setGhibliVehicles: Dispatch<SetStateAction<GhibliVehicle[]>>;
+  setNumPages: Dispatch<SetStateAction<number>>;
+  currPage: number;
 }

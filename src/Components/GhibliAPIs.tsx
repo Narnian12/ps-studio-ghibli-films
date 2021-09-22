@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   GhibliFilm,
   GhibliPerson,
@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
+import { Home } from './Home';
 import { GhibliFilms } from './GhibliFilms';
 import { GhibliPeople } from './GhibliPeople';
 import { GhibliLocations } from './GhibliLocations';
@@ -24,37 +25,44 @@ export const GhibliAPIs: FC = () => {
   const [ghibliLocations, setGhibliLocations] = useState<GhibliLocation[]>([]);
   const [ghibliSpecies, setGhibliSpecies] = useState<GhibliSpecies[]>([]);
   const [ghibliVehicles, setGhibliVehicles] = useState<GhibliVehicle[]>([]);
+  const [numPages, setNumPages] = useState(0);
+  const [currPage, setCurrPage] = useState(1);
+
+  const pageChanged = (event: React.ChangeEvent<unknown>, page: number) => {
+    event.preventDefault();
+    return setCurrPage(page);
+  };
 
   return (
     <>
       <Router>
         <GhibliAPIsWrapper>
-          <LinkStyle to="/">
+          <LinkStyle to="/ps-studio-ghibli-films">
             <Button variant="contained">
               <Typography>Home</Typography>
             </Button>
           </LinkStyle>
-          <LinkStyle to="/films">
+          <LinkStyle to="/ps-studio-ghibli-films/films">
             <Button variant="contained">
               <Typography>Films</Typography>
             </Button>
           </LinkStyle>
-          <LinkStyle to="/people">
+          <LinkStyle to="/ps-studio-ghibli-films/people">
             <Button variant="contained">
               <Typography>People</Typography>
             </Button>
           </LinkStyle>
-          <LinkStyle to="/locations">
+          <LinkStyle to="/ps-studio-ghibli-films/locations">
             <Button variant="contained">
               <Typography>Locations</Typography>
             </Button>
           </LinkStyle>
-          <LinkStyle to="/species">
+          <LinkStyle to="/ps-studio-ghibli-films/species">
             <Button variant="contained">
               <Typography>Species</Typography>
             </Button>
           </LinkStyle>
-          <LinkStyle to="/vehicles">
+          <LinkStyle to="/ps-studio-ghibli-films/vehicles">
             <Button variant="contained">
               <Typography>Vehicles</Typography>
             </Button>
@@ -62,41 +70,54 @@ export const GhibliAPIs: FC = () => {
         </GhibliAPIsWrapper>
         <GhibliListsWrapper>
           <Switch>
-            <Route path="/films">
+            <Route path="/ps-studio-ghibli-films/films">
               <GhibliFilms
                 ghibliFilms={ghibliFilms}
                 setGhibliFilms={setGhibliFilms}
+                setNumPages={setNumPages}
+                currPage={currPage}
               />
             </Route>
-            <Route path="/people">
+            <Route path="/ps-studio-ghibli-films/people">
               <GhibliPeople
                 ghibliPeople={ghibliPeople}
                 setGhibliPeople={setGhibliPeople}
+                setNumPages={setNumPages}
+                currPage={currPage}
               />
             </Route>
-            <Route path="/locations">
+            <Route path="/ps-studio-ghibli-films/locations">
               <GhibliLocations
                 ghibliLocations={ghibliLocations}
                 setGhibliLocations={setGhibliLocations}
+                setNumPages={setNumPages}
+                currPage={currPage}
               />
             </Route>
-            <Route path="/species">
+            <Route path="/ps-studio-ghibli-films/species">
               <GhibliSpeciesList
                 ghibliSpecies={ghibliSpecies}
                 setGhibliSpecies={setGhibliSpecies}
+                setNumPages={setNumPages}
+                currPage={currPage}
               />
             </Route>
-            <Route path="/vehicles">
+            <Route path="/ps-studio-ghibli-films/vehicles">
               <GhibliVehicles
                 ghibliVehicles={ghibliVehicles}
                 setGhibliVehicles={setGhibliVehicles}
+                setNumPages={setNumPages}
+                currPage={currPage}
               />
+            </Route>
+            <Route path="/ps-studio-ghibli-films/">
+              <Home setNumPages={setNumPages} />
             </Route>
           </Switch>
         </GhibliListsWrapper>
       </Router>
       <Footer>
-        <Pagination count={10} color="primary" />
+        <Pagination count={numPages} color="primary" onChange={pageChanged} />
       </Footer>
     </>
   );
