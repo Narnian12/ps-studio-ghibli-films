@@ -6,6 +6,7 @@ import {
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const GhibliFilms: FC<GhibliFilmsInterface> = ({
   ghibliFilms,
@@ -35,7 +36,7 @@ export const GhibliFilms: FC<GhibliFilmsInterface> = ({
     setDisplayedFilms(ghibliFilms.slice(currPage * 5 - 5, currPage * 5));
   }, [currPage, ghibliFilms]);
 
-  return (
+  return displayedFilms.length > 0 ? (
     <ListWrapper>
       <Grid columns={12} container spacing={1}>
         <Grid item xs={2}>
@@ -104,8 +105,18 @@ export const GhibliFilms: FC<GhibliFilmsInterface> = ({
         ))}
       </Grid>
     </ListWrapper>
+  ) : (
+    <ProgressWrapper>
+      <CircularProgress />
+    </ProgressWrapper>
   );
 };
+
+const ProgressWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+`;
 
 const ListWrapper = styled.div`
   margin: 80px 0px 0px 0px;
@@ -114,4 +125,5 @@ const ListWrapper = styled.div`
 const GridItemStyle = styled.div`
   display: flex;
   justify-content: center;
+  text-align: center;
 `;

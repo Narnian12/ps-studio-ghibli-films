@@ -131,6 +131,7 @@ const GhibliAPIsWrapper = styled.div`
   margin: 40px 0px 0px 0px;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   background-color: lightgray;
   padding: 5px;
 `;

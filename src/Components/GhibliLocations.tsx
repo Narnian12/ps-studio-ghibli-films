@@ -6,6 +6,7 @@ import {
 import Grid from '@mui/material/Grid';
 import styled from 'styled-components';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const GhibliLocations: FC<GhibliLocationsInterface> = ({
   ghibliLocations,
@@ -38,7 +39,7 @@ export const GhibliLocations: FC<GhibliLocationsInterface> = ({
     );
   }, [currPage, ghibliLocations]);
 
-  return (
+  return displayedLocations.length > 0 ? (
     <ListWrapper>
       <Grid columns={4} container spacing={1}>
         <Grid item xs={1}>
@@ -87,8 +88,18 @@ export const GhibliLocations: FC<GhibliLocationsInterface> = ({
         ))}
       </Grid>
     </ListWrapper>
+  ) : (
+    <ProgressWrapper>
+      <CircularProgress />
+    </ProgressWrapper>
   );
 };
+
+const ProgressWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+`;
 
 const ListWrapper = styled.div`
   margin: 80px 0px 0px 0px;
@@ -97,4 +108,5 @@ const ListWrapper = styled.div`
 const GridItemStyle = styled.div`
   display: flex;
   justify-content: center;
+  text-align: center;
 `;

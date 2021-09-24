@@ -80,4 +80,5 @@ const ListWrapper = styled.div`
 const GridItemStyle = styled.div`
   display: flex;
   justify-content: center;
+  text-align: center;
 `;
